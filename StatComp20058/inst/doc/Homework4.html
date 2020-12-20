@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Xinyu Li" />
+
+<meta name="date" content="2020-12-16" />
+
+<title>Homework4</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework4</h1>
+<h4 class="author">Xinyu Li</h4>
+<h4 class="date">2020-12-16</h4>
+
+
+
+<div id="question" class="section level3">
+<h3>question</h3>
+<p>Exercises 5.13, 5.15, 6.4, and 6.5 (page 151 and 180, Statistical Computating with R).</p>
+</div>
+<div id="answer" class="section level3">
+<h3>answer</h3>
+<div id="exercises-5.13" class="section level4">
+<h4><strong>Exercises 5.13</strong></h4>
+<div id="solution" class="section level5">
+<h5>solution:</h5>
+<p>It can be seen from the meaning of the question: first, find the minimum approximation function, that is, a constant term different from the integrand function： <span class="math display">\[
+\theta=\int_{A} g(x) d x=\int_{A} \frac{g(x)}{\phi(x)} \phi(x) d x=E\left[\frac{g(X)}{\phi(X)}\right]
+\]</span> <span class="math display">\[
+\hat{\theta}=\overline{g(X)}=\frac{1}{n} \sum_{i=1}^{n} \frac{g\left(X_{i}\right)}{\phi\left(X_{i}\right)}
+\]</span> <span class="math display">\[
+\operatorname{Var}(\hat{\theta})=E\left[\hat{\theta}^{2}\right]-(E[\hat{\theta}])^{2}=\int_{A} \frac{g^{2}(x)}{\phi(x)} d s-\theta^{2}
+\]</span> <span class="math display">\[
+\left(\int_{A}|g(x)| d x\right)^{2}-\theta^{2}
+\]</span> <span class="math display">\[
+\phi(x)=\frac{|g(x)|}{\int_{A}|g(x)| d x}
+\]</span> The final result is the approximation function of minimum variance distribution, and a function is selected by using the principle of approximation:<span class="math inline">\(F_1\)</span> and <span class="math inline">\(F_2\)</span>. <span class="math display">\[
+f_{1}(x)=\frac{\frac{1}{\sqrt{2\pi}} x^{2} e^{-\frac{x^{2}}{2}}}{\int_{1}^{+\infty} \frac{1}{\sqrt{2 \pi}} x^{2} e^{-\frac{x^{2}}{2}} d x}
+\]</span> Due to <span class="math inline">\(f_1\)</span> and <span class="math inline">\(f_1\)</span> is only one constant, so the variance is zero_ The variance of <span class="math inline">\(f_2\)</span>, so <span class="math inline">\(f_1\)</span> is smaller. Since the best function is not easy to find, the normal distribution function is used instead: <span class="math display">\[f_2(x) = e^{-(x-1)}\\(x&gt;1)\]</span> <span class="math display">\[
+f_3(x)=(x-1)e^{-\frac{(x-1)^{2}}{2}}\\\ (x&gt;1)
+\]</span>$ <span class="math display">\[f_4(x)=\frac{2}{\pi*(1+(x-1)^{2})}\\(x&gt;1)\]</span></p>
+<p>The following is a simulation experiment to compare variance of <span class="math inline">\(f_2\)</span> and <span class="math inline">\(f_3\)</span> <span class="math inline">\(f_4\)</span>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">123342</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>theta.hat &lt;-<span class="st"> </span>se &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">3</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>u &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">100000</span>) </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">-</span><span class="kw">log</span>(<span class="dv">1</span><span class="op">-</span>u)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>g&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>  ((<span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>pi)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))<span class="op">*</span>(x<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>(x<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>))<span class="op">*</span>(x<span class="op">&gt;</span><span class="dv">1</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>fg &lt;-<span class="st"> </span><span class="kw">g</span>(x) <span class="op">/</span><span class="st"> </span>(<span class="kw">exp</span>(<span class="op">-</span>x<span class="op">+</span><span class="dv">1</span>))</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>theta.hat[<span class="dv">1</span>]=<span class="kw">mean</span>(fg)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>se[<span class="dv">1</span>]=<span class="kw">sd</span>(fg)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>M&lt;-<span class="kw">runif</span>(<span class="dv">10000</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>c&lt;-(<span class="op">-</span><span class="dv">2</span><span class="op">*</span><span class="kw">log</span>(<span class="dv">1</span><span class="op">-</span>M))<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>g&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a>  ((<span class="dv">1</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>pi)<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))<span class="op">*</span>((x<span class="op">+</span><span class="dv">1</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>((x<span class="op">+</span><span class="dv">1</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a>}</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a>fg &lt;-<span class="st"> </span><span class="kw">g</span>(c) <span class="op">/</span><span class="st"> </span>(c<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span>(c<span class="op">^</span><span class="dv">2</span>)<span class="op">/</span><span class="dv">2</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true"></a>theta.hat[<span class="dv">2</span>]=<span class="kw">mean</span>(fg)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true"></a>se[<span class="dv">2</span>]=<span class="kw">sd</span>(fg)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true"></a>m&lt;-<span class="dv">10000</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true"></a>g&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true"></a>  (x<span class="op">^</span><span class="dv">2</span><span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>pi)<span class="op">^</span><span class="fl">0.5</span>)<span class="op">*</span><span class="kw">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>x<span class="op">^</span><span class="dv">2</span>)<span class="op">*</span>(x<span class="op">&gt;</span><span class="dv">1</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true"></a>}</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true"></a>u&lt;-<span class="kw">runif</span>(m)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true"></a>x&lt;-<span class="kw">tan</span>(pi<span class="op">*</span>u<span class="op">/</span><span class="dv">2</span>)<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true"></a>fg&lt;-<span class="kw">g</span>(x)<span class="op">/</span>((<span class="dv">2</span><span class="op">/</span>pi)<span class="op">*</span>(<span class="dv">1</span><span class="op">+</span>(x<span class="dv">-1</span>)<span class="op">^</span><span class="dv">2</span>)<span class="op">^</span>(<span class="op">-</span><span class="dv">1</span>))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true"></a>theta.hat[<span class="dv">3</span>]&lt;-<span class="kw">mean</span>(fg)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true"></a>se[<span class="dv">3</span>]&lt;-<span class="kw">sd</span>(fg)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true"></a></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true"></a><span class="kw">rbind</span>(theta.hat, se)</span></code></pre></div>
+<pre><code>##                [,1]      [,2]      [,3]
+## theta.hat 0.4011405 0.4034092 0.4023044
+## se        0.1569413 0.4947538 0.2445827</code></pre>
+<p>It can be seen from the fitting results that <span class="math inline">\(f_2\)</span> and <span class="math inline">\(f_3\)</span>,<span class="math inline">\(f_4\)</span> are the closest to each other, the variance of <span class="math inline">\(f_2\)</span> is smaller.</p>
+</div>
+</div>
+<div id="exercises-5.15" class="section level4">
+<h4><strong>Exercises 5.15</strong></h4>
+<div id="solution-1" class="section level5">
+<h5>solution:</h5>
+<p>Firstly, it is known from example5.13 that the best estimation result obtained by using importance sampling in 5.10 is 0.5257801 and the standard deviation is 0.0970.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>c1=d1=<span class="kw">numeric</span>(<span class="dv">5</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a>u &lt;-<span class="st"> </span><span class="kw">runif</span>(<span class="dv">2000</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a>x1 &lt;-<span class="st"> </span><span class="op">-</span><span class="st"> </span><span class="kw">log</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>u <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span><span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>))))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a>g1&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a>  <span class="kw">exp</span>(<span class="op">-</span>x <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">^</span><span class="dv">2</span>))<span class="op">*</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">*</span><span class="st"> </span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a>}</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a>fg1 &lt;-<span class="st"> </span><span class="kw">g1</span>(x1)<span class="op">/</span>(((<span class="kw">exp</span>(<span class="op">-</span>x1)))<span class="op">/</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>)))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a>c1[<span class="dv">1</span>] =<span class="st"> </span><span class="kw">mean</span>(fg1)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a>d1[<span class="dv">1</span>] =<span class="st"> </span><span class="kw">var</span>(fg1)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>x2 &lt;-<span class="st"> </span><span class="op">-</span><span class="st"> </span><span class="kw">log</span>((<span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>) <span class="op">-</span><span class="st"> </span>u <span class="op">*</span><span class="st"> </span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>)<span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">2</span><span class="op">/</span><span class="dv">5</span>))))</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a>g2&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a>  <span class="kw">exp</span>(<span class="op">-</span>x <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">^</span><span class="dv">2</span>))<span class="op">*</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>) <span class="op">*</span><span class="st"> </span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">5</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a>}</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>fg2 &lt;-<span class="st"> </span><span class="kw">g2</span>(x2)<span class="op">/</span>(((<span class="kw">exp</span>(<span class="op">-</span>x2)))<span class="op">/</span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span><span class="op">/</span><span class="dv">5</span>) <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">2</span><span class="op">/</span><span class="dv">5</span>)))</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a>c1[<span class="dv">2</span>] =<span class="st"> </span><span class="kw">mean</span>(fg2)</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>d1[<span class="dv">2</span>] =<span class="st"> </span><span class="kw">var</span>(fg2)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>x3 &lt;-<span class="st"> </span><span class="op">-</span><span class="st"> </span><span class="kw">log</span>((<span class="kw">exp</span>(<span class="op">-</span><span class="dv">2</span><span class="op">/</span><span class="dv">5</span>) <span class="op">-</span><span class="st"> </span>u <span class="op">*</span><span class="st"> </span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">2</span><span class="op">/</span><span class="dv">5</span>)<span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>))))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>g3&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a>  <span class="kw">exp</span>(<span class="op">-</span>x <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">^</span><span class="dv">2</span>))<span class="op">*</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span><span class="op">/</span><span class="dv">5</span>) <span class="op">*</span><span class="st"> </span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>)</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a>}</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>fg3 &lt;-<span class="st"> </span><span class="kw">g3</span>(x3)<span class="op">/</span>(((<span class="kw">exp</span>(<span class="op">-</span>x3)))<span class="op">/</span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">2</span><span class="op">/</span><span class="dv">5</span>)<span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>)))</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a>c1[<span class="dv">3</span>] =<span class="st"> </span><span class="kw">mean</span>(fg3)</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a>d1[<span class="dv">3</span>] =<span class="st"> </span><span class="kw">var</span>(fg3)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a>x4 &lt;-<span class="st"> </span><span class="op">-</span><span class="st"> </span><span class="kw">log</span>((<span class="kw">exp</span>(<span class="op">-</span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>) <span class="op">-</span><span class="st"> </span>u <span class="op">*</span><span class="st"> </span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>)<span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span>))))</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a>g4&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a>  <span class="kw">exp</span>(<span class="op">-</span>x <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">^</span><span class="dv">2</span>))<span class="op">*</span>(x <span class="op">&gt;</span><span class="st"> </span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>) <span class="op">*</span><span class="st"> </span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a>}</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a>fg4 &lt;-<span class="st"> </span><span class="kw">g4</span>(x4)<span class="op">/</span>(((<span class="kw">exp</span>(<span class="op">-</span>x4)))<span class="op">/</span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">3</span><span class="op">/</span><span class="dv">5</span>)<span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span>)))</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a>c1[<span class="dv">4</span>] =<span class="st"> </span><span class="kw">mean</span>(fg4)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a>d1[<span class="dv">4</span>] =<span class="st"> </span><span class="kw">var</span>(fg4)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a>x5 &lt;-<span class="st"> </span><span class="op">-</span><span class="st"> </span><span class="kw">log</span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span>) <span class="op">-</span><span class="st"> </span>u <span class="op">*</span><span class="st"> </span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span>)<span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span>)))</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a>g5&lt;-<span class="cf">function</span>(x){</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a>  <span class="kw">exp</span>(<span class="op">-</span>x <span class="op">-</span><span class="st"> </span><span class="kw">log</span>(<span class="dv">1</span><span class="op">+</span>x<span class="op">^</span><span class="dv">2</span>))<span class="op">*</span>(x <span class="op">&gt;</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span>) <span class="op">*</span><span class="st"> </span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">1</span>)</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>}</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a>fg5 &lt;-<span class="st"> </span><span class="kw">g5</span>(x5)<span class="op">/</span>(((<span class="kw">exp</span>(<span class="op">-</span>x5)))<span class="op">/</span>(<span class="kw">exp</span>(<span class="op">-</span><span class="dv">4</span><span class="op">/</span><span class="dv">5</span>)<span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(<span class="op">-</span><span class="dv">1</span>)))</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>c1[<span class="dv">5</span>] =<span class="st"> </span><span class="kw">mean</span>(fg5)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a>d1[<span class="dv">5</span>] =<span class="st"> </span><span class="kw">var</span>(fg5)</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a></span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a>theta.hat &lt;-<span class="st"> </span>se &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">2</span>)</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>theta.hat[<span class="dv">2</span>]=<span class="kw">round</span>(<span class="kw">sum</span>(c1),<span class="dv">5</span>)</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a>se[<span class="dv">2</span>]=<span class="kw">round</span>(<span class="kw">sum</span>(d1),<span class="dv">5</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a>theta.hat[<span class="dv">1</span>]=<span class="kw">round</span>(<span class="fl">0.5257801</span>,<span class="dv">5</span>)</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true"></a>se[<span class="dv">1</span>]=<span class="kw">round</span>(<span class="fl">0.0970</span>,<span class="dv">5</span>)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true"></a><span class="kw">rbind</span>(theta.hat, se)</span></code></pre></div>
+<pre><code>##              [,1]    [,2]
+## theta.hat 0.52578 0.52480
+## se        0.09700 0.00006</code></pre>
+<p>The first column is stratified importance sampling, and the second column is importance sampling. Compared with importance sampling, the variance is significantly lower.</p>
+</div>
+</div>
+<div id="exercises-6.4" class="section level4">
+<h4><strong>Exercises 6.4</strong></h4>
+<div id="solution-2" class="section level5">
+<h5>solution:</h5>
+<p>IF:<span class="math display">\[x_{1} \cdots x_{n} \sim L N\left(\mu, \sigma^{2}\right)\]</span> AND:<span class="math display">\[Y_{i}=\operatorname{In} x_{i}\]</span> SO：<span class="math display">\[Y_{1} \cdots Y_{n} \sim N\left(\mu, \sigma^{2}\right)\]</span> SO： <span class="math display">\[\hat{\mu}=\frac{1}{n} \sum_{i} \ln x_{i}\]</span> <span class="math display">\[
+\frac{\hat{\mu}-\mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0,1)
+\]</span> <span class="math display">\[S_{Y}^{2}=\frac{1}{n-1} \sum_{i}\left(ln(X_{i})-\hat{\mu}\right)^{2}\]</span> <span class="math display">\[\frac{(n-1) S_{Y}^{2}}{r^{2}} \sim \chi^{2}(n-1)\]</span> <span class="math display">\[
+t=\frac{\frac{\hat{\mu}-\mu}{\sigma} \cdot \sqrt{n}}{\sqrt{\frac{(n-1) s^{2}}{\sigma^{2}} / n-1}}=\frac{(\hat{\mu}-\mu) \sqrt{n}}{\sqrt{s^{2}}} \sim t(n-1)
+\]</span> <span class="math display">\[
+\hat{\mu}-t_\frac{\alpha}{2}\frac{S_Y}{n}&lt;\mu&lt;\hat{\mu}+t_\frac{\alpha}{2}\frac{S_Y}{n}
+\]</span> Of which <span class="math inline">\(S_Y\)</span>is an absolute value. To represent the value after the radix. The following is the confidence level estimation of Monte Carlo estimation:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a>set.seed=<span class="dv">123</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a>UCL &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">10000</span>, <span class="dt">expr =</span> {</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>  s =<span class="st"> </span><span class="kw">rlnorm</span>(<span class="dv">20</span>, <span class="dt">meanlog =</span> <span class="dv">0</span>, <span class="dt">sdlog =</span> <span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a>  a =<span class="st"> </span><span class="kw">log</span>(s)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>  <span class="kw">sqrt</span>(<span class="dv">20</span>)<span class="op">*</span><span class="kw">abs</span>(<span class="kw">mean</span>(a))<span class="op">/</span>((<span class="dv">20</span><span class="op">/</span><span class="dv">19</span>)<span class="op">*</span><span class="kw">var</span>(a))<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>} )</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">c</span>(<span class="kw">sum</span>(UCL<span class="op">&lt;</span><span class="kw">qt</span>(<span class="fl">0.975</span>,<span class="dv">19</span>)),<span class="kw">mean</span>(UCL<span class="op">&lt;</span><span class="kw">qt</span>(<span class="fl">0.975</span>,<span class="dv">19</span>))))</span></code></pre></div>
+<pre><code>## [1] 9594.0000    0.9594</code></pre>
+<p>It can be seen that the confidence level of the mean value estimated by Monte Carlo method is about 0.95, which shows that the model hypothesis is tenable.</p>
+</div>
+</div>
+<div id="exercises-6.5" class="section level4">
+<h4><strong>Exercises 6.5</strong></h4>
+<div id="solution-3" class="section level5">
+<h5>solution:</h5>
+<p>The problem requires that the data distribution at this time is a chi square distribution: that is, to estimate the mean value of the chi square distribution, but because we do not know, we still use the t-test of normal distribution, as follows:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>n&lt;-<span class="dv">20</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>m&lt;-<span class="dv">1000</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">12</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a><span class="co">#problem6.5</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true"></a>CL1=<span class="kw">matrix</span>(<span class="dv">0</span>,m,<span class="dv">2</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true"></a>  x&lt;-<span class="kw">rchisq</span>(n,<span class="dv">2</span>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true"></a>  CL1[i,<span class="dv">2</span>]=<span class="kw">mean</span>(x)<span class="op">+</span>((((<span class="dv">20</span><span class="op">/</span><span class="dv">19</span>)<span class="op">*</span><span class="kw">var</span>(x))<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>))<span class="op">/</span>(n<span class="op">^</span><span class="fl">0.5</span>)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true"></a>  CL1[i,<span class="dv">1</span>]=<span class="kw">mean</span>(x)<span class="op">-</span>((((<span class="dv">20</span><span class="op">/</span><span class="dv">19</span>)<span class="op">*</span><span class="kw">var</span>(x))<span class="op">^</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))<span class="op">*</span><span class="kw">qt</span>(<span class="fl">0.975</span>,n<span class="dv">-1</span>))<span class="op">/</span>(n<span class="op">^</span><span class="fl">0.5</span>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true"></a>}</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true"></a>a1=<span class="kw">mean</span>(CL1[,<span class="dv">1</span>]<span class="op">&lt;=</span><span class="dv">2</span><span class="op">&amp;</span>CL1[,<span class="dv">2</span>]<span class="op">&gt;=</span><span class="dv">2</span>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true"></a>a2=<span class="kw">sd</span>(CL1[,<span class="dv">1</span>]<span class="op">&lt;=</span><span class="dv">2</span><span class="op">&amp;</span>CL1[,<span class="dv">2</span>]<span class="op">&gt;=</span><span class="dv">2</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">c</span>(a1,a2))</span></code></pre></div>
+<pre><code>## [1] 0.9250000 0.2635231</code></pre>
+<p>the deviation is not large, so we can see that the standard deviation is small. For example 6.4: its estimation of variance:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="dv">20</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a>alpha &lt;-<span class="st"> </span><span class="fl">.05</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a>UCL &lt;-<span class="st"> </span><span class="kw">replicate</span>(<span class="dv">1000</span>, <span class="dt">expr =</span> {</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a>x &lt;-<span class="st"> </span><span class="kw">rchisq</span>(n, <span class="dt">df =</span> <span class="dv">2</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a>(n<span class="dv">-1</span>) <span class="op">*</span><span class="st"> </span><span class="kw">var</span>(x) <span class="op">/</span><span class="st"> </span><span class="kw">qchisq</span>(alpha, <span class="dt">df =</span> n<span class="dv">-1</span>)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>} )</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">c</span>(<span class="kw">mean</span>(UCL<span class="op">&gt;</span><span class="dv">4</span>),<span class="kw">sd</span>(UCL)))</span></code></pre></div>
+<pre><code>## [1] 0.775000 4.793043</code></pre>
+<p>The deviation degree of the distance is 0.95, and the standard deviation is large. This shows that: Compared with variance estimation, mean t-estimation should be more robust to deviation from normality。</p>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

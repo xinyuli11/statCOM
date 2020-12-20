@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="author" content="Xinyu Li" />
+
+<meta name="date" content="2020-12-16" />
+
+<title>Homework6</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Homework6</h1>
+<h4 class="author">Xinyu Li</h4>
+<h4 class="date">2020-12-16</h4>
+
+
+
+<div id="question" class="section level3">
+<h3>question</h3>
+<p>Exercises 7.1, 7.5, 7.8, and 7.11 (pages 212-213, Statistical Computating with R)</p>
+</div>
+<div id="answer" class="section level3">
+<h3>answer</h3>
+<div id="exercises-7.1" class="section level4">
+<h4><strong>Exercises 7.1</strong></h4>
+<p>Compute a jackknife estimate of the bias and the standard error of the correcation statistic in Example 7.2.</p>
+<div id="solution" class="section level5">
+<h5>solution:</h5>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="kw">library</span>(bootstrap)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>b.cor &lt;-<span class="st"> </span><span class="cf">function</span>(x,i) <span class="kw">cor</span>(x[i,<span class="dv">1</span>],x[i,<span class="dv">2</span>])</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>b&lt;-<span class="kw">data.matrix</span>(law)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>theta.hat &lt;-<span class="st"> </span><span class="kw">b.cor</span>(b,<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>theta.jack &lt;-<span class="st"> </span><span class="kw">numeric</span>(<span class="dv">15</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">15</span>){</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>    theta.jack[i] &lt;-<span class="st"> </span><span class="kw">b.cor</span>(b,(<span class="dv">1</span><span class="op">:</span><span class="dv">15</span>)[<span class="op">-</span>i])</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>}</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>bias.jack &lt;-<span class="st"> </span>(<span class="dv">15-1</span>)<span class="op">*</span>(<span class="kw">mean</span>(theta.jack)<span class="op">-</span>theta.hat)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>se.jack &lt;-<span class="st"> </span><span class="kw">sqrt</span>((<span class="dv">15-1</span>)<span class="op">*</span><span class="kw">mean</span>((theta.jack<span class="op">-</span>theta.hat)<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a><span class="kw">round</span>(<span class="kw">c</span>(<span class="dt">original=</span>theta.hat,<span class="dt">bias.jack=</span>bias.jack,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>        <span class="dt">se.jack=</span>se.jack),<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>##  original bias.jack   se.jack 
+##     0.776    -0.006     0.143</code></pre>
+<p>The deviation is -0.006 and the standard error is 0.143.</p>
+</div>
+</div>
+<div id="exercises-7.5" class="section level4">
+<h4><strong>Exercises 7.5</strong></h4>
+<p>Refer to Exercise 7.4. Compute 95% bootstrap confidence intervals for the mean time between failures 1/λ by the standard normal, basic, percentile,and BCa methods. Compare the intervals and explain why they may differ.</p>
+<div id="solution-1" class="section level5">
+<h5>solution:</h5>
+<p><span class="math display">\[f(x)=\left\{\begin{array}{ll}\lambda e^{-\lambda t} &amp; x&gt;0 \\0 &amp; x \leq 0\end{array}\right.(\lambda=1)\]</span></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="kw">library</span>(boot)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;boot&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:lattice&#39;:
+## 
+##     melanoma</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a>n=<span class="fl">1e1</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a>R&lt;-<span class="kw">rexp</span>(n,<span class="dt">rate=</span><span class="dv">1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="kw">data</span>(R, <span class="dt">package =</span> <span class="st">&quot;boot&quot;</span>) </span></code></pre></div>
+<pre><code>## Warning in data(R, package = &quot;boot&quot;): data set &#39;R&#39; not found</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>boot.obj &lt;-<span class="st"> </span><span class="kw">boot</span>(aircondit, <span class="dt">R =</span> <span class="dv">2000</span>, <span class="dt">statistic =</span> <span class="cf">function</span>(x, i){<span class="kw">mean</span>(x[i,<span class="dv">1</span>])})</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">boot.ci</span>(boot.obj, <span class="dt">type=</span><span class="kw">c</span>(<span class="st">&quot;basic&quot;</span>,<span class="st">&quot;norm&quot;</span>,<span class="st">&quot;perc&quot;</span>,<span class="st">&quot;bca&quot;</span>)))</span></code></pre></div>
+<pre><code>## BOOTSTRAP CONFIDENCE INTERVAL CALCULATIONS
+## Based on 2000 bootstrap replicates
+## 
+## CALL : 
+## boot.ci(boot.out = boot.obj, type = c(&quot;basic&quot;, &quot;norm&quot;, &quot;perc&quot;, 
+##     &quot;bca&quot;))
+## 
+## Intervals : 
+## Level      Normal              Basic         
+## 95%   ( 33.1, 182.8 )   ( 19.9, 170.0 )  
+## 
+## Level     Percentile            BCa          
+## 95%   ( 46.2, 196.2 )   ( 58.5, 232.3 )  
+## Calculations and Intervals on Original Scale
+## Some BCa intervals may be unstable</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>mu&lt;-<span class="dv">1</span>;n&lt;-<span class="fl">1e1</span>;m&lt;-<span class="fl">1e4</span>;<span class="kw">library</span>(boot);<span class="kw">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>boot.mean &lt;-<span class="st"> </span><span class="cf">function</span>(x,i) <span class="dv">1</span><span class="op">/</span><span class="kw">mean</span>(x[i])</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>ci.norm&lt;-ci.basic&lt;-ci.perc&lt;-ci.bca&lt;-<span class="kw">matrix</span>(<span class="ot">NA</span>,m,<span class="dv">2</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true"></a>  R&lt;-<span class="kw">rexp</span>(n,<span class="dt">rate=</span><span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true"></a>  de &lt;-<span class="st"> </span><span class="kw">boot</span>(<span class="dt">data=</span>R,<span class="dt">statistic=</span>boot.mean, <span class="dt">R =</span> <span class="dv">999</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true"></a>  ci &lt;-<span class="st"> </span><span class="kw">boot.ci</span>(de,<span class="dt">type=</span><span class="kw">c</span>(<span class="st">&quot;norm&quot;</span>,<span class="st">&quot;basic&quot;</span>,<span class="st">&quot;perc&quot;</span>,<span class="st">&quot;bca&quot;</span>))</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true"></a>  ci.norm[i,]&lt;-ci<span class="op">$</span>norm[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>];ci.basic[i,]&lt;-ci<span class="op">$</span>basic[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>]</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true"></a>  ci.perc[i,]&lt;-ci<span class="op">$</span>percent[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>];ci.bca[i,]&lt;-ci<span class="op">$</span>bca[<span class="dv">4</span><span class="op">:</span><span class="dv">5</span>] }</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true"></a><span class="kw">cat</span>(<span class="st">&#39;norm =&#39;</span>,<span class="kw">mean</span>(ci.norm[,<span class="dv">1</span>]<span class="op">&lt;=</span>mu <span class="op">&amp;</span><span class="st"> </span>ci.norm[,<span class="dv">2</span>]<span class="op">&gt;=</span>mu),</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true"></a>    <span class="st">&#39;basic =&#39;</span>,<span class="kw">mean</span>(ci.basic[,<span class="dv">1</span>]<span class="op">&lt;=</span>mu <span class="op">&amp;</span><span class="st"> </span>ci.basic[,<span class="dv">2</span>]<span class="op">&gt;=</span>mu),</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true"></a>    <span class="st">&#39;perc =&#39;</span>,<span class="kw">mean</span>(ci.perc[,<span class="dv">1</span>]<span class="op">&lt;=</span>mu <span class="op">&amp;</span><span class="st"> </span>ci.perc[,<span class="dv">2</span>]<span class="op">&gt;=</span>mu),</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true"></a>    <span class="st">&#39;BCa =&#39;</span>,<span class="kw">mean</span>(ci.bca[,<span class="dv">1</span>]<span class="op">&lt;=</span>mu <span class="op">&amp;</span><span class="st"> </span>ci.bca[,<span class="dv">2</span>]<span class="op">&gt;=</span>mu))</span></code></pre></div>
+<pre><code>## norm = 0.937 basic = 0.8692 perc = 0.8663 BCa = 0.8807</code></pre>
+<p>From the results, the judgment criterion is that the closer to 0.95, the better the effect, and the value of norm is SMALLER, which is the closest, so the norm value is the best. In addition, because the exponential distribution is tailed, its statistics are not smooth. Therefore, the effect is not very good. In addition, the distribution of the data may deviate from the true distribution.</p>
+</div>
+</div>
+<div id="exercises-7.8" class="section level4">
+<h4><strong>Exercises 7.8</strong></h4>
+<p>Refer to Exercise 7.7. Obtain the jackknife estimates of bias and standard error of θˆ.</p>
+<div id="solution-2" class="section level5">
+<h5>solution:</h5>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a>n&lt;-<span class="kw">nrow</span>(scor)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a>jack&lt;-<span class="kw">numeric</span>(n) </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a>  scor&lt;-scor[<span class="op">-</span>i,]</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a>  cov.e&lt;-<span class="kw">eigen</span>(<span class="kw">cov</span>(scor))</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a>  lameda&lt;-cov.e<span class="op">$</span>values</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a>  jack[i]&lt;-lameda[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sum</span>(lameda)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a>}</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a>theta.hat&lt;-<span class="kw">eigen</span>(<span class="kw">cov</span>(scor))<span class="op">$</span>values[<span class="dv">1</span>]<span class="op">/</span><span class="kw">sum</span>(<span class="kw">eigen</span>(<span class="kw">cov</span>(scor))<span class="op">$</span>values)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a>bias.jack&lt;-(n<span class="dv">-1</span>)<span class="op">*</span>(<span class="kw">mean</span>(jack)<span class="op">-</span>theta.hat)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a>se.jack&lt;-<span class="kw">sqrt</span>(n<span class="dv">-1</span>)<span class="op">*</span><span class="kw">mean</span>((jack <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(jack))<span class="op">^</span><span class="dv">2</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="kw">print</span>(<span class="kw">c</span>(bias.jack&lt;-(n<span class="dv">-1</span>)<span class="op">*</span>(<span class="kw">mean</span>(jack)<span class="op">-</span>theta.hat),se.jack&lt;-<span class="kw">sqrt</span>(n<span class="dv">-1</span>)<span class="op">*</span><span class="kw">mean</span>((jack <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(jack))<span class="op">^</span><span class="dv">2</span>)))</span></code></pre></div>
+<pre><code>## [1] -0.520529657  0.003501485</code></pre>
+<p>The deviation is -0.520529657 and the standard error is 0.003501485.</p>
+</div>
+</div>
+<div id="exercises-7.11" class="section level4">
+<h4><strong>Exercises 7.11</strong></h4>
+<p>In Example 7.18, leave-one-out (n-fold) cross validation was used to select the best fitting model. Use leave-two-out cross validation to compare the models.</p>
+<div id="solution-3" class="section level5">
+<h5>solution</h5>
+<p>The following is the leave two method, but it does not traverse all the combinations:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">library</span>(lattice)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">library</span>(DAAG)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true"></a><span class="kw">attach</span>(ironslag)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(magnetic)<span class="op">-</span><span class="dv">1</span>  <span class="co">#in DAAG ironslag</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true"></a>e1 &lt;-<span class="st"> </span>e2 &lt;-<span class="st"> </span>e3 &lt;-<span class="st"> </span>e4 &lt;-<span class="st"> </span><span class="kw">numeric</span>(n)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true"></a><span class="co"># for n-fold cross validation</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true"></a><span class="co"># fit models on leave-one-out samples</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true"></a><span class="cf">for</span> (k <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>n) {</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true"></a>  y &lt;-<span class="st"> </span>magnetic[<span class="op">-</span>k]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true"></a>  y&lt;-y[<span class="op">-</span>k]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true"></a>  x &lt;-<span class="st"> </span>chemical[<span class="op">-</span>k]</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true"></a>  x&lt;-x[<span class="op">-</span>k]</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true"></a>  J1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true"></a>  yhat1 &lt;-<span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[k]</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true"></a>  yhat12 &lt;-<span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[k<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true"></a>  e1[k] &lt;-<span class="st"> </span>(magnetic[k] <span class="op">-</span><span class="st"> </span>yhat1)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[k<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>yhat12)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true"></a>  J2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true"></a>  yhat2 &lt;-<span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[k] <span class="op">+</span>J2<span class="op">$</span>coef[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>chemical[k]<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true"></a>  yhat22 &lt;-<span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[k<span class="op">+</span><span class="dv">1</span>] <span class="op">+</span>J2<span class="op">$</span>coef[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>chemical[k<span class="op">+</span><span class="dv">1</span>]<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true"></a>  e2[k] &lt;-<span class="st"> </span>(magnetic[k] <span class="op">-</span><span class="st"> </span>yhat2)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[k<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>yhat22)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true"></a>  J3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(y) <span class="op">~</span><span class="st"> </span>x)</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true"></a>  logyhat3 &lt;-<span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[k]</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true"></a>  yhat3 &lt;-<span class="st"> </span><span class="kw">exp</span>(logyhat3)</span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true"></a>  logyhat32 &lt;-<span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[k<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true"></a>  yhat32 &lt;-<span class="st"> </span><span class="kw">exp</span>(logyhat32)</span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true"></a>  e3[k] &lt;-<span class="st"> </span>(magnetic[k] <span class="op">-</span><span class="st"> </span>yhat3)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[k<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>yhat32)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true"></a>  J4 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(y) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(x))</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true"></a>  logyhat4 &lt;-<span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(chemical[k])</span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true"></a>  yhat4 &lt;-<span class="st"> </span><span class="kw">exp</span>(logyhat4)</span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true"></a>  logyhat42 &lt;-<span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(chemical[k<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true"></a>  yhat42 &lt;-<span class="st"> </span><span class="kw">exp</span>(logyhat42)</span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true"></a>  e4[k] &lt;-<span class="st"> </span>(magnetic[k] <span class="op">-</span><span class="st"> </span>yhat4)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[k<span class="op">+</span><span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>yhat42)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="kw">c</span>(<span class="kw">mean</span>(e1), <span class="kw">mean</span>(e2), <span class="kw">mean</span>(e3), <span class="kw">mean</span>(e4))</span></code></pre></div>
+<pre><code>## [1] 40.10462 35.93996 37.17712 41.49138</code></pre>
+<p>From the results, y ~ x + I(x^2) works best, and its mean square error is 35.93996.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">library</span>(DAAG); <span class="kw">attach</span>(ironslag)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a>L1 &lt;-<span class="st"> </span><span class="kw">lm</span>(magnetic <span class="op">~</span><span class="st"> </span>chemical)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true"></a>L2 &lt;-<span class="st"> </span><span class="kw">lm</span>(magnetic <span class="op">~</span><span class="st"> </span>chemical <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(chemical<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true"></a>L3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(magnetic) <span class="op">~</span><span class="st"> </span>chemical)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true"></a>L4 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(magnetic) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(chemical))</span></code></pre></div>
+<p>The following is the result of leaving two and traversing all combinations:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="kw">library</span>(DAAG)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="kw">attach</span>(ironslag)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a>a &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dv">10</span>, <span class="dv">40</span>, <span class="fl">.1</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a>n &lt;-<span class="st"> </span><span class="kw">length</span>(magnetic)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a>c&lt;-<span class="kw">combn</span>(n,<span class="dv">2</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a>m&lt;-<span class="kw">ncol</span>(c)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>e1 &lt;-<span class="st"> </span>e2 &lt;-<span class="st"> </span>e3 &lt;-<span class="st"> </span>e4 &lt;-<span class="st"> </span><span class="kw">numeric</span>(m)</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>m){</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a>  x&lt;-magnetic[<span class="op">-</span>c[,i]]</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true"></a>  y&lt;-chemical[<span class="op">-</span>c[,i]]</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true"></a>  J1 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true"></a>  yhat11 &lt;-<span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">1</span>,i]] </span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true"></a>  yhat12 &lt;-<span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J1<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">2</span>,i]] </span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true"></a>  e1[i] &lt;-<span class="st"> </span>(magnetic[c[<span class="dv">1</span>,i]]<span class="op">-</span>yhat11)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[c[<span class="dv">2</span>,i]] <span class="op">-</span><span class="st"> </span>yhat12)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true"></a>  </span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true"></a>  J2 &lt;-<span class="st"> </span><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="kw">I</span>(x<span class="op">^</span><span class="dv">2</span>))</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true"></a>  yhat21 &lt;-<span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">1</span>,i]] <span class="op">+</span><span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">1</span>,i]]<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true"></a>  yhat22 &lt;-<span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">2</span>,i]] <span class="op">+</span><span class="st"> </span>J2<span class="op">$</span>coef[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">2</span>,i]]<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true"></a>  e2[i] &lt;-<span class="st"> </span>(magnetic[c[<span class="dv">1</span>,i]]<span class="op">-</span>yhat21)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[c[<span class="dv">2</span>,i]] <span class="op">-</span><span class="st"> </span>yhat22)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true"></a>  </span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true"></a>  J3 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(y) <span class="op">~</span><span class="st"> </span>x)</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true"></a>  logyhat31 &lt;-<span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">1</span>,i]] </span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true"></a>  logyhat32 &lt;-<span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J3<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>chemical[c[<span class="dv">2</span>,i]] </span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true"></a>  yhat31&lt;-<span class="kw">exp</span>(logyhat31)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true"></a>  yhat32&lt;-<span class="kw">exp</span>(logyhat32)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true"></a>  e3[i] &lt;-<span class="st"> </span>(magnetic[c[<span class="dv">1</span>,i]]<span class="op">-</span>yhat31)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[c[<span class="dv">2</span>,i]] <span class="op">-</span><span class="st"> </span>yhat32)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true"></a>  </span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true"></a>  J4 &lt;-<span class="st"> </span><span class="kw">lm</span>(<span class="kw">log</span>(y) <span class="op">~</span><span class="st"> </span><span class="kw">log</span>(x))</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true"></a>  logyhat41 &lt;-<span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(chemical[c[<span class="dv">1</span>,i]])</span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true"></a>  logyhat42 &lt;-<span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>J4<span class="op">$</span>coef[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="kw">log</span>(chemical[c[<span class="dv">2</span>,i]]) </span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true"></a>  yhat41 &lt;-<span class="st"> </span><span class="kw">exp</span>(logyhat41) </span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true"></a>  yhat42 &lt;-<span class="st"> </span><span class="kw">exp</span>(logyhat42) </span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true"></a>  e4[i] &lt;-<span class="st"> </span>(magnetic[c[<span class="dv">1</span>,i]] <span class="op">-</span><span class="st"> </span>yhat41)<span class="op">^</span><span class="dv">2</span><span class="op">+</span>(magnetic[c[<span class="dv">2</span>,i]] <span class="op">-</span><span class="st"> </span>yhat42)<span class="op">^</span><span class="dv">2</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true"></a>}</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true"></a><span class="kw">c</span>(<span class="kw">mean</span>(e1), <span class="kw">mean</span>(e2), <span class="kw">mean</span>(e3), <span class="kw">mean</span>(e4))</span></code></pre></div>
+<pre><code>## [1] 41.53656 42.96276 39.54081 40.74772</code></pre>
+<p>The following is the result of leaving two methods and traversing all the combinations. It can be seen that the mean square error of L3 is smaller at this time, which means that the results of different cross-validation may be different, and a consistent verification method is required.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="kw">summary</span>(L3)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = log(magnetic) ~ chemical)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -0.64173 -0.09555 -0.00529  0.10021  0.43117 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 2.112158   0.117442  17.985  &lt; 2e-16 ***
+## chemical    0.041608   0.005409   7.693  4.4e-10 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.1967 on 51 degrees of freedom
+## Multiple R-squared:  0.5371, Adjusted R-squared:  0.5281 
+## F-statistic: 59.18 on 1 and 51 DF,  p-value: 4.399e-10</code></pre>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

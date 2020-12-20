@@ -1,0 +1,62 @@
+---
+title: "intro2"
+author: "Xinyu Li"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{intro2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(StatComp20058)
+```
+
+##  _myst_  and  _mean_ci_
+
+```{r message=FALSE}
+data("data")
+attach(data)
+myst(age)
+```
+This function has a preliminary understanding of a sample set by calculating basic statistics such as mean value, variance, skewness, kurtosis, etc., which is similar to the simplified SumMAR function.
+
+
+
+```{r message=FALSE, warning=FALSE}
+data("data")
+attach(data)
+mean_ci(age,0.95)
+```
+This function can output a confidence interval of the specified confidence degree of an approximate normal distribution, which is applicable in the case of large samples
+
+## _getRandomNum_ and _outlierKD_
+
+```{r}
+z = getRandomNum(x = 5,min = 2230,q25 = 18123,q50 = 52213,q75 = 78312,max = 234234123)
+quantile(z)
+fivenum(z)
+```
+
+According to order statistics, random sequences can be generated, and some statistical studies on order statistics can be carried out
+
+
+```{r fig.height=30, fig.width=30, include=FALSE}
+data("data")
+attach(data)
+par(mfrow=c(4,1),mar=rep(0,4))
+outlierKD(data,age)
+```
+
+Outliers are detected for a sequence and the decision is made whether to delete or convert them to missing values
+
+
+
+
